@@ -1,5 +1,3 @@
-# java/Uebung9
-
 ## Aufgabe 1: 加载游戏关卡
 
 - Die Feldbeschreibung soll nicht mehr direkt aus einem String-Array im Code stammen, sondern aus einer `Datei` geladen werden
@@ -24,9 +22,14 @@
     ```
     
 - Level 类的Konstruktur应该读取一个名为 filename 的文件。
+    - 流的概念
+        - 读入一部分就处理一部分
     - `Game.Jar.getInputStream(fileName)`
         - *`Liefern eines Datenstroms zu einem Dateinamen.`*
     - `BufferedReader`: [Reads text from a character-input stream, buffering characters so as to provide for the efficient reading of characters, arrays, and lines.](https://docs.oracle.com/javase/7/docs/api/java/io/BufferedReader.html)
+    
+    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6d61f0a4-b0a6-45f4-bfbf-8006fff0d7b5/Untitled.png)
+    
     - `try-catch` : [see](https://www.w3schools.com/java/java_try_catch.asp)
         
         ```java
@@ -46,7 +49,7 @@
 1. 错误信息描述错误原因。不需要主程序捕获此异常。以下错误将导致这样的异常：
 - 找不到关卡文件。
 - 读取文件时出现问题。
-- 文件包含无效符号在网格节点位置。
+- 文件包含无效符号。
 - 文件中不止一个 Player。
 
 修改主程序以使用 Level 类。
@@ -55,4 +58,12 @@ Aufgabe 2: 隐藏游戏关卡
 
 要求：在 Level 类和 Field 类中实现一个 hide() 方法，将关卡从屏幕上隐藏。为此，您需要记住在创建关卡时创建的所有 GameObject 类的实例，并在它们的 hide() 方法中调用 setVisible(false)。
 
-提交：类似于第 6 次练习，即在相同的存储库中的 loesung0 目录中。
+```java
+void hide()
+    {
+        for (final GameObject gameObject : gameObjects) {
+            gameObject.setVisible(false);
+        }
+        field.hide();
+    }
+```
